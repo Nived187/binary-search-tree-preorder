@@ -5,17 +5,46 @@ struct create{
     int data;
     struct create *left;
     struct create *right;
-}*root,*node,*temp;
+}*root,*node,*temp,*a[10];
+
+int top=0;
 
 void main()
 
 {
     void nodecreate();
+    void maintree(struct create*);
 
-    nodecreate();
+   	nodecreate();
+	
+	temp=root;
+	maintree(temp);
+	
+	while(top>=0)
+	{
+		maintree(a[top]);
+		top--;
+	}
 
     
 }
+
+void maintree(struct create *temp)
+{
+	while(temp!=NULL)
+	{
+		printf("\t %d",temp->data);
+		
+		if(temp->right!=NULL)
+		{
+			a[top]=temp->right;
+			top++;
+		}
+		
+		temp=temp->left;
+	}
+}
+
 
 void nodecreate()
 {
@@ -70,3 +99,4 @@ void nodecreate()
     }
 
 }
+
